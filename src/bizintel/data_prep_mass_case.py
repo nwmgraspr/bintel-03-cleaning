@@ -44,7 +44,7 @@ Output:
 
 Terminal command to run this file from the root project folder:
 
-uv run python -m bizintel.data_prep_case
+uv run python -m bizintel.data_prep_mass_case
 
 OBS:
   Don't edit this file - it should remain a working example.
