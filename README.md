@@ -58,6 +58,10 @@ After completing Phase 1. **Start & Run**,
 you'll have your own GitHub project,
 and running the example module will print out:
 
+## Technical Modifications
+
+Added a sorting step that orders the prepared sales data by SaleDate (or by CustomerID and SaleDate) before saving the cleaned dataset. This improves readability and makes the output easier to analyze.
+
 ```shell
 ========================
 Executed successfully!
