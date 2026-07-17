@@ -311,6 +311,11 @@ def prepare_sales(
     # Save rejected rows to a CSV file.
     rejected.to_csv(SALES_REJECTED, index=False)
 
+    # Log rejected record information.
+    LOG.info("Saved rejected sales records")
+    LOG.info(f"  Rejected rows: {rejected.shape[0]}")
+    LOG.info(f"  Path: {SALES_REJECTED}")
+
     # Remove rejected rows from the prepared dataset.
     df = df.dropna(subset=["SaleDate", "SaleAmount"])
 
