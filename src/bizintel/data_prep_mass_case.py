@@ -376,11 +376,10 @@ def prepare_sales(
     LOG.info(f"  Removed {before_count - after_count} duplicate row(s)")
     LOG.info(f"  Sales prepared: {df.shape[0]} rows")
     LOG.info("Sales Prep 7. Sort data by CustomerID and SaleDate")
-    df = df.sort_values(
-        by=["CustomerID", "SaleDate"]
-    ).reset_index(drop=True)
-    
+    df = df.sort_values(by=["CustomerID", "SaleDate"]).reset_index(drop=True)
+
     return df
+
 
 # === Section 2.4 DEFINE A SAVE FUNCTION ===
 
