@@ -86,6 +86,8 @@ CUSTOMERS_PREPARED: Final[Path] = DATA_PREPARED / "customers_data_prepared.csv"
 PRODUCTS_PREPARED: Final[Path] = DATA_PREPARED / "products_data_prepared.csv"
 SALES_PREPARED: Final[Path] = DATA_PREPARED / "sales_data_prepared.csv"
 
+# Rejected sales records.
+SALES_REJECTED: Final[Path] = Path("data/rejected/sales_data_rejected.csv")
 
 # === Section 2. Define Reusable Functions ===
 
@@ -298,10 +300,20 @@ def prepare_sales(
 
     LOG.info("Sales Prep 3. Remove rows with missing date or amount")
 
-    # Remove rows where SaleDate or SaleAmount could not be parsed.
-    # dropna() removes rows where any of the listed columns has NaN or NaT.
     before: int = df.shape[0]
+
+    # Save rejected rows before removing them.
+    rejected = df[df[["SaleDate", "SaleAmount"]].isna().any(axis=1)]
+
+    # Create the rejected folder if it doesn't exist.
+    SALES_REJECTED.parent.mkdir(parents=True, exist_ok=True)
+
+    # Save rejected rows to a CSV file.
+    rejected.to_csv(SALES_REJECTED, index=False)
+
+    # Remove rejected rows from the prepared dataset.
     df = df.dropna(subset=["SaleDate", "SaleAmount"])
+
     after: int = df.shape[0]
 
     LOG.info(f"  Rows before: {before}")
