@@ -34,6 +34,20 @@ Compared with the example project,
 explain what is different and why the change matters.
 
 Was it easy, or surprisingly challenging and why do you think so?
+Modification 1: Added a sorting step that orders the prepared sales data by SaleDate (or by CustomerID and SaleDate) before saving the cleaned dataset. This improves readability and makes the output easier to analyze.
+Modification 2: Save Rejected Sales Records; The sales preparation workflow was modified to capture rows with invalid SaleDate or SaleAmount values before removing them from the prepared dataset.
+
+Purpose: Preserve invalid sales records instead of permanently removing them during the cleaning process. This provides an audit trail for data quality issues and allows rejected records to be reviewed later.
+
+Process: - During Sales Prep 3, rows with missing or invalid SaleDate values are identified. - Rows with missing or invalid SaleAmount values are identified. - These rejected rows are saved to a separate CSV file. - The rejected rows are then removed from the sales DataFrame so only clean records continue through the preparation workflow.
+
+Output: New output file: data/rejected/sales_data_rejected.csv
+
+Contents: The rejected file contains the original sales columns for the invalid records. These records are preserved for review and possible correction.
+
+Reason: Keeping rejected records improves data governance by: - Preventing loss of potentially recoverable data. - Supporting data quality investigation. - Providing transparency into the cleaning process.
+
+Impact: The prepared sales dataset remains unchanged and contains only valid records. The new rejected dataset provides visibility into records removed during preparation.
 
 ## Phase 5. Custom Project
 
@@ -41,43 +55,62 @@ Describe your custom data cleaning and preparation work.
 
 ### Basis and Data
 
-Describe the raw data you started with.
+I used three hospital datasets:
 
-Include:
+- patients_data.csv
+- doctors_data.csv
+- appointments_data.csv
 
-- The three smart sales data files and their known quality issues
-- Which issues you chose to address and which you deferred
-- Any important assumptions about what counts as valid data
+The raw data contained quality issues such as duplicates, inconsistent text values, invalid dates, missing values, invalid numeric values, and incorrect relationships between tables.
+
+I cleaned duplicate records, standardized text fields, fixed data types, removed invalid records, and validated patient/doctor relationships. I deferred changes to non-critical fields such as names and cancelled appointment history.
+
+Assumptions:
+
+IDs must be unique.
+Appointments must reference valid patients and doctors.
+Dates and financial values must be valid.
 
 ### Cleaning Approach
 
-Describe the ETVL preparation steps you implemented.
+The ETL process included:
 
-Include:
+Loading and inspecting raw CSV files.
+Checking data quality.
+Cleaning each dataset.
+Validating results.
+Saving prepared files.
 
-- What cleaning steps you applied to each table
-- What custom cleaning logic you added beyond the example
-- How you verified the data was clean before saving
+Cleaning performed:
+
+Patients: standardized gender values, converted birth dates, removed duplicates.
+Doctors: standardized departments, converted salary values, removed duplicates.
+Appointments: converted dates and amounts, removed invalid records, validated IDs, removed duplicates.
+
+Custom logic added:
+
+Gender normalization.
+Department standardization.
+Foreign key validation between tables.
+
+Data quality was verified using row counts, missing value checks, and validation logs before saving.
 
 ### Before and After
 
-Describe the impact of your cleaning work.
+- patients_data.csv: before 101, after	100
+- doctors_data.csv: before	26, after	25
+- appointments_data.csv: before	301, after	285
 
-Include:
+The raw data contained duplicates and invalid values. After cleaning, the prepared datasets contained consistent, validated records ready for BI analysis.
 
-- How many rows were removed or corrected in each table
-- What the data looked like before and after (use screenshots or log output)
-- Whether any cleaning decisions were judgment calls and why you made them
+Some decisions required judgment, such as keeping cancelled appointments because they may provide useful business insights.
+
+(Include a screenshot of the cleaning logs or before/after chart here.)
 
 ### Summary
 
-Summarize your custom cleaning work.
+This project implemented a custom healthcare data cleaning workflow beyond the original example by adding domain-specific rules, automated raw data generation, and relationship validation.
 
-Include:
+The final prepared data is clean, consistent, and ready for dashboards and reporting.
 
-- What you implemented beyond the example
-- What the prepared data looks like
-- What you learned about data quality
-- What kinds of real business problems data cleaning enables
-
-Display at least one chart or screenshot showing your before and after results.
+I learned that data quality directly affects business decisions. Clean data helps organizations analyze trends, measure performance, reduce errors, and make better decisions.
