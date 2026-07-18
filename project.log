@@ -2976,3 +2976,160 @@ max          2400.00     1199.00    2099.00   404.00        3.00     4993.88    
 2026-07-17 21:50:30 | INFO | BI | ========================
 2026-07-17 21:50:30 | INFO | BI | Executed successfully!
 2026-07-17 21:50:30 | INFO | BI | ========================
+2026-07-18 06:23:08 | INFO | BI | === RUN START ===
+2026-07-18 06:23:08 | INFO | BI | project=BI HOSPITAL DATA PREPARATION
+2026-07-18 06:23:08 | INFO | BI | repo_dir=bintel-03-cleaning
+2026-07-18 06:23:08 | INFO | BI | python=3.14.6
+2026-07-18 06:23:08 | INFO | BI | os=Windows 10
+2026-07-18 06:23:08 | INFO | BI | shell=powershell
+2026-07-18 06:23:08 | INFO | BI | cwd=.
+2026-07-18 06:23:08 | INFO | BI | github_actions=False
+2026-07-18 06:23:08 | INFO | BI | Starting hospital ETL workflow
+2026-07-18 06:23:08 | INFO | BI | Raw data: = data\raw
+2026-07-18 06:23:08 | INFO | BI | Prepared data: = data\prepared
+2026-07-18 06:23:08 | INFO | BI | Task 1. LOAD DATA
+2026-07-18 06:23:08 | INFO | BI | Loading patients from data\raw\patients_data.csv
+2026-07-18 06:23:08 | INFO | BI | Loaded: 101 rows, 6 columns
+2026-07-18 06:23:08 | INFO | BI | Loading doctors from data\raw\doctors_data.csv
+2026-07-18 06:23:08 | INFO | BI | Loaded: 26 rows, 4 columns
+2026-07-18 06:23:08 | INFO | BI | Loading appointments from data\raw\appointments_data.csv
+2026-07-18 06:23:08 | INFO | BI | Loaded: 301 rows, 6 columns
+2026-07-18 06:23:08 | INFO | BI | Task 2. INSPECT DATA
+2026-07-18 06:23:08 | INFO | BI | Inspecting patients
+2026-07-18 06:23:08 | INFO | BI |   Columns: ['PatientID', 'FirstName', 'LastName', 'Gender', 'BirthDate', 'City']
+2026-07-18 06:23:08 | INFO | BI |   Shape:   101 rows x 6 columns
+2026-07-18 06:23:08 | DEBUG | BI | 
+   PatientID FirstName LastName  Gender   BirthDate         City
+0       1001     Sarah    Smith  female  1965-04-05     St Louis
+1       1002     Sarah     Hall    male  1987-07-02        Omaha
+2       1003     James    Jones  Female  1982-10-01      Chicago
+3       1004     David    Young   Male   1964-08-19  Kansas City
+4       1005      John    Allen       M  1994-07-11  Kansas City
+
+2026-07-18 06:23:08 | INFO | BI | Inspecting doctors
+2026-07-18 06:23:08 | INFO | BI |   Columns: ['DoctorID', 'DoctorName', 'Department', 'Salary']
+2026-07-18 06:23:08 | INFO | BI |   Shape:   26 rows x 4 columns
+2026-07-18 06:23:08 | DEBUG | BI | 
+   DoctorID  DoctorName   Department  Salary
+0       501    Dr. King    Emergency  190545
+1       502  Dr. Wilson   CARDIOLOGY  155774
+2       503   Dr. Davis    Neurology  209016
+3       504    Dr. King   neurology   136728
+4       505   Dr. Scott   neurology   197580
+
+2026-07-18 06:23:08 | INFO | BI | Inspecting appointments
+2026-07-18 06:23:08 | INFO | BI |   Columns: ['AppointmentID', 'PatientID', 'DoctorID', 'AppointmentDate', 'BillAmount', 'Status']
+2026-07-18 06:23:08 | INFO | BI |   Shape:   301 rows x 6 columns
+2026-07-18 06:23:08 | DEBUG | BI | 
+   AppointmentID  PatientID  DoctorID AppointmentDate BillAmount     Status
+0           9001       1044       501      2026-08-28        266  Completed
+1           9002       1034       511      2026-05-20        649  Completed
+2           9003       1031       524      2026-07-16          ?  Cancelled
+3           9004       1003       503      2026-05-08        393  Cancelled
+4           9005       1071       517      2026-06-14          ?  Completed
+
+2026-07-18 06:23:08 | INFO | BI | Task 3. QUALITY CHECK BEFORE
+2026-07-18 06:23:08 | INFO | BI | Quality check: patients
+2026-07-18 06:23:08 | INFO | BI |   Total missing values: 0
+2026-07-18 06:23:08 | INFO | BI |   Duplicate rows: 1
+2026-07-18 06:23:08 | WARNING | BI |   1 duplicate row(s) found - review before loading to warehouse
+2026-07-18 06:23:08 | INFO | BI | Quality check: doctors
+2026-07-18 06:23:08 | INFO | BI |   Total missing values: 0
+2026-07-18 06:23:08 | INFO | BI |   Duplicate rows: 1
+2026-07-18 06:23:08 | WARNING | BI |   1 duplicate row(s) found - review before loading to warehouse
+2026-07-18 06:23:08 | INFO | BI | Quality check: appointments
+2026-07-18 06:23:08 | INFO | BI |   Total missing values: 0
+2026-07-18 06:23:08 | INFO | BI |   Duplicate rows: 1
+2026-07-18 06:23:08 | WARNING | BI |   1 duplicate row(s) found - review before loading to warehouse
+2026-07-18 06:23:08 | INFO | BI | Task 4. PREPARE DATA
+2026-07-18 06:23:08 | INFO | BI | Preparing patients data
+2026-07-18 06:23:08 | INFO | BI | Patients Prep 1. Normalize Gender
+2026-07-18 06:23:08 | INFO | BI | Patients Prep 2. Convert BirthDate
+2026-07-18 06:23:08 | WARNING | BI |   Invalid birth dates: 1
+2026-07-18 06:23:08 | INFO | BI | Patients Prep 3. Remove missing PatientID
+2026-07-18 06:23:08 | INFO | BI |   Removed 0 missing IDs
+2026-07-18 06:23:08 | INFO | BI | Patients Prep 4. Remove duplicates
+2026-07-18 06:23:08 | INFO | BI |   Removed 1 duplicate rows
+2026-07-18 06:23:08 | INFO | BI | Patients prepared: 100 rows
+2026-07-18 06:23:08 | INFO | BI | Preparing doctors data
+2026-07-18 06:23:08 | INFO | BI | Doctors Prep 1. Normalize Department
+2026-07-18 06:23:08 | INFO | BI | Doctors Prep 2. Convert Salary
+2026-07-18 06:23:08 | WARNING | BI |   Invalid salary values: 8
+2026-07-18 06:23:08 | INFO | BI | Doctors Prep 3. Remove duplicates
+2026-07-18 06:23:08 | INFO | BI |   Removed 1 duplicate rows
+2026-07-18 06:23:08 | INFO | BI | Doctors prepared: 25 rows
+2026-07-18 06:23:08 | INFO | BI | Preparing appointments data
+2026-07-18 06:23:08 | INFO | BI | Appointments Prep 1. Convert AppointmentDate
+2026-07-18 06:23:08 | WARNING | BI |   Invalid appointment dates: 1
+2026-07-18 06:23:08 | INFO | BI | Appointments Prep 2. Convert BillAmount
+2026-07-18 06:23:08 | WARNING | BI |   Invalid bill amounts: 76
+2026-07-18 06:23:08 | INFO | BI | Appointments Prep 3. Remove missing values
+2026-07-18 06:23:08 | INFO | BI |   Removed 76 incomplete rows
+2026-07-18 06:23:08 | INFO | BI | Appointments Prep 4. Validate PatientID
+2026-07-18 06:23:08 | WARNING | BI |   Removing 1 appointments with invalid PatientID
+2026-07-18 06:23:08 | INFO | BI | Appointments Prep 5. Validate DoctorID
+2026-07-18 06:23:08 | WARNING | BI |   Removing 1 appointments with invalid DoctorID
+2026-07-18 06:23:08 | INFO | BI | Appointments Prep 6. Remove duplicates
+2026-07-18 06:23:08 | INFO | BI |   Removed 1 duplicate rows
+2026-07-18 06:23:08 | INFO | BI | Appointments prepared: 222 rows
+2026-07-18 06:23:08 | INFO | BI | Task 5. QUALITY CHECK AFTER
+2026-07-18 06:23:08 | INFO | BI | Quality check: patients prepared
+2026-07-18 06:23:08 | INFO | BI |   Total missing values: 1
+2026-07-18 06:23:08 | WARNING | BI |   Missing by column:
+BirthDate    1
+dtype: int64
+2026-07-18 06:23:08 | INFO | BI |   Duplicate rows: 0
+2026-07-18 06:23:08 | INFO | BI | Quality check: doctors prepared
+2026-07-18 06:23:08 | INFO | BI |   Total missing values: 8
+2026-07-18 06:23:09 | WARNING | BI |   Missing by column:
+Salary    8
+dtype: int64
+2026-07-18 06:23:09 | INFO | BI |   Duplicate rows: 0
+2026-07-18 06:23:09 | INFO | BI | Quality check: appointments prepared
+2026-07-18 06:23:09 | INFO | BI |   Total missing values: 0
+2026-07-18 06:23:09 | INFO | BI |   Duplicate rows: 0
+2026-07-18 06:23:09 | INFO | BI | Task 6. SUMMARIZE DATA
+2026-07-18 06:23:09 | INFO | BI | Numeric summary: patients prepared
+2026-07-18 06:23:09 | INFO | BI | 
+       PatientID
+count     100.00
+mean     1050.50
+std        29.01
+min      1001.00
+25%      1025.75
+50%      1050.50
+75%      1075.25
+max      1100.00
+2026-07-18 06:23:09 | INFO | BI | Numeric summary: doctors prepared
+2026-07-18 06:23:09 | INFO | BI | 
+       DoctorID     Salary
+count     25.00      17.00
+mean     513.00  169767.94
+std        7.36   28939.22
+min      501.00  130735.00
+25%      507.00  146130.00
+50%      513.00  156559.00
+75%      519.00  197607.00
+max      525.00  209016.00
+2026-07-18 06:23:09 | INFO | BI | Numeric summary: appointments prepared
+2026-07-18 06:23:09 | INFO | BI | 
+       AppointmentID  PatientID  DoctorID  BillAmount
+count         222.00     222.00    222.00      222.00
+mean         9150.32    1050.38    512.79      438.27
+std            86.79      29.07      6.60      197.16
+min          9001.00    1001.00    501.00       82.00
+25%          9075.50    1024.00    508.00      265.25
+50%          9147.00    1049.50    513.00      454.00
+75%          9228.75    1078.00    518.00      623.00
+max          9300.00    1100.00    525.00      750.00
+2026-07-18 06:23:09 | INFO | BI | Task 7. SAVE FILES
+2026-07-18 06:23:09 | INFO | BI | Saved patients
+2026-07-18 06:23:09 | INFO | BI |   Rows: 100
+2026-07-18 06:23:09 | INFO | BI |   Path: data\prepared\patients_data_prepared.csv
+2026-07-18 06:23:09 | INFO | BI | Saved doctors
+2026-07-18 06:23:09 | INFO | BI |   Rows: 25
+2026-07-18 06:23:09 | INFO | BI |   Path: data\prepared\doctors_data_prepared.csv
+2026-07-18 06:23:09 | INFO | BI | Saved appointments
+2026-07-18 06:23:09 | INFO | BI |   Rows: 222
+2026-07-18 06:23:09 | INFO | BI |   Path: data\prepared\appointments_data_prepared.csv
+2026-07-18 06:23:09 | INFO | BI | Hospital data preparation complete
