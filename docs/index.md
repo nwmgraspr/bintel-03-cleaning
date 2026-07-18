@@ -97,8 +97,8 @@ Data quality was verified using row counts, missing value checks, and validation
 
 ### Before and After
 
-Cleaning results:
-
+Cleaning results:		
+		
 Dataset	Before	After
 Patients	101	100
 Doctors	26	25
