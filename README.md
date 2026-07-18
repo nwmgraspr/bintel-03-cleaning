@@ -72,7 +72,7 @@ The document describes two moderate improvements to the sales data preparation w
  data/rejected/sales_data_rejected.csv
  - The rejected file keeps the original sales columns for review and possible correction.
 
-# Purpose and impact:
+## Purpose and impact:
 
  - Prevents permanent loss of problematic data.
  - Creates an audit trail for data quality issues.
