@@ -97,9 +97,6 @@ Data quality was verified using row counts, missing value checks, and validation
 
 ### Before and After
 
-Cleaning results:		
-		
-Dataset	Before and After
 Patients: before 101, after	100
 Doctors: before	26, after	25
 Appointments: before	301, after	285
