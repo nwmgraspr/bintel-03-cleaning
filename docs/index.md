@@ -21,19 +21,6 @@ to get the example projects running on your machine.
 
 ## Phase 4. Technical Modification
 
-Describe your small technical modification to the example project.
-
-Include:
-
-- What you changed
-- Why you chose that change
-- How you verified that it worked
-- What result, output, chart, metric, or behavior confirmed the change
-
-Compared with the example project,
-explain what is different and why the change matters.
-
-Was it easy, or surprisingly challenging and why do you think so?
 Modification 1: Added a sorting step that orders the prepared sales data by SaleDate (or by CustomerID and SaleDate) before saving the cleaned dataset. This improves readability and makes the output easier to analyze.
 Modification 2: Save Rejected Sales Records; The sales preparation workflow was modified to capture rows with invalid SaleDate or SaleAmount values before removing them from the prepared dataset.
 
@@ -48,6 +35,8 @@ Contents: The rejected file contains the original sales columns for the invalid 
 Reason: Keeping rejected records improves data governance by: - Preventing loss of potentially recoverable data. - Supporting data quality investigation. - Providing transparency into the cleaning process.
 
 Impact: The prepared sales dataset remains unchanged and contains only valid records. The new rejected dataset provides visibility into records removed during preparation.
+
+This modification was moderate. 
 
 ## Phase 5. Custom Project
 
