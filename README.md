@@ -60,46 +60,26 @@ and running the example module will print out:
 
 ## Technical Modifications
 
-Added a sorting step that orders the prepared sales data by SaleDate (or by CustomerID and SaleDate) before saving the cleaned dataset. This improves readability and makes the output easier to analyze.
+The document describes two moderate improvements to the sales data preparation workflow:
 
-Purpose:
-    Preserve invalid sales records instead of permanently removing them during
-    the cleaning process. This provides an audit trail for data quality issues
-    and allows rejected records to be reviewed later.
+## Added sorting of prepared sales data
+ - Cleaned sales records are now sorted by SaleDate (or CustomerID and SaleDate) before being saved.
+ - This improves readability and makes the dataset easier to analyze.
+## Added rejected sales record tracking
+ - Invalid sales records with missing or incorrect SaleDate or SaleAmount values are identified before removal.
+ - These rejected records are saved separately in:
 
+ data/rejected/sales_data_rejected.csv
+ - The rejected file keeps the original sales columns for review and possible correction.
 
-Change Made:
-    The sales preparation workflow was modified to capture rows with invalid
-    SaleDate or SaleAmount values before removing them from the prepared dataset.
+# Purpose and impact:
 
+ - Prevents permanent loss of problematic data.
+ - Creates an audit trail for data quality issues.
+ - Improves transparency and data governance.
+ - Keeps the prepared sales dataset clean by allowing only valid records to continue through the workflow.
 
-Process:
-    - During Sales Prep 3, rows with missing or invalid SaleDate values are
-      identified.
-    - Rows with missing or invalid SaleAmount values are identified.
-    - These rejected rows are saved to a separate CSV file.
-    - The rejected rows are then removed from the sales DataFrame so only
-      clean records continue through the preparation workflow.
-
-
-Output:
-    New output file:
-        data/rejected/sales_data_rejected.csv
-
-Contents:
-    The rejected file contains the original sales columns for the invalid
-    records. These records are preserved for review and possible correction.
-
-Reason:
-    Keeping rejected records improves data governance by:
-        - Preventing loss of potentially recoverable data.
-        - Supporting data quality investigation.
-        - Providing transparency into the cleaning process.
-
-Impact:
-    The prepared sales dataset remains unchanged and contains only valid
-    records. The new rejected dataset provides visibility into records removed
-    during preparation.
+This modification was moderate. 
 
 ```shell
 ========================
