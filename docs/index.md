@@ -57,9 +57,9 @@ Describe your custom data cleaning and preparation work.
 
 I used three hospital datasets:
 
-patients_data.csv
-doctors_data.csv
-appointments_data.csv
+- patients_data.csv
+- doctors_data.csv
+- appointments_data.csv
 
 The raw data contained quality issues such as duplicates, inconsistent text values, invalid dates, missing values, invalid numeric values, and incorrect relationships between tables.
 
@@ -97,9 +97,9 @@ Data quality was verified using row counts, missing value checks, and validation
 
 ### Before and After
 
-Patients: before 101, after	100
-Doctors: before	26, after	25
-Appointments: before	301, after	285
+- patients_data.csv: before 101, after	100
+- doctors_data.csv: before	26, after	25
+- appointments_data.csv: before	301, after	285
 
 The raw data contained duplicates and invalid values. After cleaning, the prepared datasets contained consistent, validated records ready for BI analysis.
 
