@@ -99,10 +99,10 @@ Data quality was verified using row counts, missing value checks, and validation
 
 Cleaning results:		
 		
-Dataset	Before	After
-Patients	101	100
-Doctors	26	25
-Appointments	301	285
+Dataset	Before and After
+Patients: before 101, after	100
+Doctors: before	26, after	25
+Appointments: before	301, after	285
 
 The raw data contained duplicates and invalid values. After cleaning, the prepared datasets contained consistent, validated records ready for BI analysis.
 
