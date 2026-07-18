@@ -86,7 +86,7 @@ The document describes two moderate improvements to the sales data preparation w
  - It does not change the core purpose of the sales preparation workflow; the final cleaned dataset still contains only valid records.
  - It adds new functionality (sorting and rejected-record handling) rather than just correcting a small bug or changing formatting.
  - Saving rejected records introduces an additional output file, data-quality tracking process, and audit capability.
- - It improves governance and traceability but does not require a major redesign of the pipeline. 
+ - It improves governance and traceability but does not require a major redesign of the pipeline.
 
 ```shell
 ========================
