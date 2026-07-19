@@ -156,7 +156,7 @@ I learned that data quality directly affects business decisions. Clean data help
 ## Run command:
 
     uv run python -m bizintel.data_prep_hospital
-    
+
 ```shell
 ========================
 Executed successfully!
