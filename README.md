@@ -88,6 +88,75 @@ The document describes two moderate improvements to the sales data preparation w
  - Saving rejected records introduces an additional output file, data-quality tracking process, and audit capability.
  - It improves governance and traceability but does not require a major redesign of the pipeline.
 
+## Phase 5. Custom Project
+
+Describe your custom data cleaning and preparation work.
+
+### Basis and Data
+
+I used three hospital datasets:
+
+- patients_data.csv
+- doctors_data.csv
+- appointments_data.csv
+
+The raw data contained quality issues such as duplicates, inconsistent text values, invalid dates, missing values, invalid numeric values, and incorrect relationships between tables.
+
+I cleaned duplicate records, standardized text fields, fixed data types, removed invalid records, and validated patient/doctor relationships. I deferred changes to non-critical fields such as names and cancelled appointment history.
+
+Assumptions:
+
+IDs must be unique.
+Appointments must reference valid patients and doctors.
+Dates and financial values must be valid.
+
+### Cleaning Approach
+
+The ETL process included:
+
+Loading and inspecting raw CSV files.
+Checking data quality.
+Cleaning each dataset.
+Validating results.
+Saving prepared files.
+
+Cleaning performed:
+
+Patients: standardized gender values, converted birth dates, removed duplicates.
+Doctors: standardized departments, converted salary values, removed duplicates.
+Appointments: converted dates and amounts, removed invalid records, validated IDs, removed duplicates.
+
+Custom logic added:
+
+Gender normalization.
+Department standardization.
+Foreign key validation between tables.
+
+Data quality was verified using row counts, missing value checks, and validation logs before saving.
+
+### Before and After
+
+- patients_data.csv: before 101, after	100
+- doctors_data.csv: before	26, after	25
+- appointments_data.csv: before	301, after	285
+
+The raw data contained duplicates and invalid values. After cleaning, the prepared datasets contained consistent, validated records ready for BI analysis.
+
+Some decisions required judgment, such as keeping cancelled appointments because they may provide useful business insights.
+
+(Include a screenshot of the cleaning logs or before/after chart here.)
+
+### Summary
+
+This project implemented a custom healthcare data cleaning workflow beyond the original example by adding domain-specific rules, automated raw data generation, and relationship validation.
+
+The final prepared data is clean, consistent, and ready for dashboards and reporting.
+
+I learned that data quality directly affects business decisions. Clean data helps organizations analyze trends, measure performance, reduce errors, and make better decisions.
+## Run command:
+
+    uv run python -m bizintel.data_prep_hospital
+    
 ```shell
 ========================
 Executed successfully!
