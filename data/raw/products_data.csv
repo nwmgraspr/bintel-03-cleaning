@@ -99,3 +99,8 @@ ProductID,ProductName,Category,UnitPrice,StockQuantity,Supplier
 2097,Office-Recent,Office,842.1,232,HomeSupply Co
 2098,Clothing-Trouble,Clothing,907.86,69,BeautyWorld
 2099,Electronics-Several,Electronics,646.32,292,SportGear Ltd
+2095,Home-Seem,Home,490.79,127,TechSource Ltd
+2096,Office-Discuss,Office,400.18,101,FashionHub Inc
+2097,Office-Recent,Office,842.1,232,Supply Co
+2098,Clothing-Trouble,Clothing,907.86,69,BeautyWorld
+2099,Electronics,Electronics,646.32,292,SportGear Ltd
