@@ -232,7 +232,9 @@ def main() -> None:
     logger.info("==================================")
     logger.info("STARTING prepare_products_data.py")
     logger.info("==================================")
-
+    logger.info(f"__file__ = {__file__}")
+    logger.info(f"PROJECT_ROOT = {PROJECT_ROOT}")
+    logger.info(f"RAW_DATA_DIR = {RAW_DATA_DIR}")
     logger.info(f"Root         : {PROJECT_ROOT}")
     logger.info(f"data/raw     : {RAW_DATA_DIR}")
     logger.info(f"data/prepared: {PREPARED_DATA_DIR}")
