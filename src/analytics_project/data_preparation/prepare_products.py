@@ -41,7 +41,9 @@ PROJECT_ROOT: pathlib.Path = SCRIPTS_DATA_PREP_DIR.parents[2]
 DATA_DIR: pathlib.Path = PROJECT_ROOT / "data"
 RAW_DATA_DIR: pathlib.Path = DATA_DIR / "raw"
 PREPARED_DATA_DIR: pathlib.Path = DATA_DIR / "prepared"
-
+print("RUNNING FILE:", __file__)
+print("PROJECT_ROOT:", PROJECT_ROOT)
+print("RAW_DATA_DIR:", RAW_DATA_DIR)
 
 # Ensure the directories exist or create them
 DATA_DIR.mkdir(exist_ok=True)
