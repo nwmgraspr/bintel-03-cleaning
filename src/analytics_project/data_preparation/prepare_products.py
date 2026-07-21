@@ -35,13 +35,12 @@ from utils.data_scrubber import DataScrubber
 
 # Constants
 SCRIPTS_DATA_PREP_DIR: pathlib.Path = pathlib.Path(__file__).resolve().parent
-PROJECT_ROOT: pathlib.Path = SCRIPTS_DATA_PREP_DIR.parents[3]
+SCRIPTS_DIR: pathlib.Path = SCRIPTS_DATA_PREP_DIR.parents[0]
+PROJECT_ROOT: pathlib.Path = SCRIPTS_DATA_PREP_DIR.parents[2]
 
 DATA_DIR: pathlib.Path = PROJECT_ROOT / "data"
 RAW_DATA_DIR: pathlib.Path = DATA_DIR / "raw"
 PREPARED_DATA_DIR: pathlib.Path = DATA_DIR / "prepared"
-
-SCRIPTS_DIR: pathlib.Path = PROJECT_ROOT / "src" / "analytics_project"
 
 
 # Ensure the directories exist or create them
