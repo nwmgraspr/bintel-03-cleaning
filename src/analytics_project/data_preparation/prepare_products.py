@@ -246,9 +246,6 @@ def main() -> None:
     # Read raw data
     df = read_raw_data(input_file)
 
-        # Read raw data
-    df = read_raw_data(input_file)
-
     # Record original shape
     original_shape = df.shape
 
