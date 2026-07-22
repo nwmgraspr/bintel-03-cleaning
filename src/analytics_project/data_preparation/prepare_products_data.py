@@ -1,5 +1,5 @@
 """
-scripts/data_preparation/prepare_products.py
+scripts/data_preparation/prepare_products_data.py
 
 This script reads data from the data/raw folder, cleans the data,
 and writes the cleaned version to the data/prepared folder.
