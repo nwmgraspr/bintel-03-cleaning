@@ -121,7 +121,6 @@ def main() -> None:
     output_file = "sales_prepared.csv"
 
     df = read_raw_data(input_file)
-
     original_shape = df.shape
 
     logger.info(f"Initial shape: {original_shape}")
