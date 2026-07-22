@@ -9,7 +9,8 @@ Tasks:
 - Handle missing values
 - Remove outliers
 - Ensure consistent formatting
-
+# Terminal command to run this file from the root project folder:
+uv run python -m analytics_project.data_preparation.prepare_customers_data
 """
 
 #####################################
