@@ -1,5 +1,5 @@
 """
-scripts/data_preparation/prepare_products.py
+scripts/data_preparation/prepare_products_data.py
 
 This script reads data from the data/raw folder, cleans the data,
 and writes the cleaned version to the data/prepared folder.
@@ -10,6 +10,9 @@ Tasks:
 - Remove outliers
 - Ensure consistent formatting
 
+
+# Terminal command to run this file from the root project folder:
+uv run python -m analytics_project.data_preparation.prepare_products_data
 """
 
 #####################################
