@@ -160,6 +160,11 @@ convention = "google"
 build-backend = "hatchling.build"
 requires = ["hatchling"]
 
+[dependency-groups]
+dev = [
+    "ruff>=0.15.21",
+]
+
 [tool.hatch.build.targets.wheel]
 # CUSTOM: Must match src/ folders.
 packages = ["src/bizintel"]  # REQ.PACKAGES: Discovery rooted at src/.
