@@ -40,10 +40,10 @@ DATA_DIR: pathlib.Path = PROJECT_ROOT / "data"
 RAW_DATA_DIR: pathlib.Path = DATA_DIR / "raw"
 PREPARED_DATA_DIR: pathlib.Path = DATA_DIR / "prepared"
 
-print("DEBUG FILE:", __file__)
-print("DEBUG PROJECT_ROOT:", PROJECT_ROOT)
-print("DEBUG RAW_DATA_DIR:", RAW_DATA_DIR)
-
+# Ensure the directories exist or create them
+DATA_DIR.mkdir(exist_ok=True)
+RAW_DATA_DIR.mkdir(exist_ok=True)
+PREPARED_DATA_DIR.mkdir(exist_ok=True)
 # Ensure the directories exist or create them
 DATA_DIR.mkdir(exist_ok=True)
 RAW_DATA_DIR.mkdir(exist_ok=True)
@@ -246,7 +246,9 @@ def main() -> None:
     logger.info("==================================")
     logger.info("STARTING prepare_products_data.py")
     logger.info("==================================")
-
+    logger.info(f"__file__ = {__file__}")
+    logger.info(f"PROJECT_ROOT = {PROJECT_ROOT}")
+    logger.info(f"RAW_DATA_DIR = {RAW_DATA_DIR}")
     logger.info(f"Root         : {PROJECT_ROOT}")
     logger.info(f"data/raw     : {RAW_DATA_DIR}")
     logger.info(f"data/prepared: {PREPARED_DATA_DIR}")
