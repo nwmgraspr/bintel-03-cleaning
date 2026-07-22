@@ -198,7 +198,7 @@ def main() -> None:
 
     # Clean column names
     original_columns = df.columns.tolist()
-    df.columns = df.columns.str.strip()
+    df.columns = df.columns.astype(str).str.strip()
 
     # Log if any column names changed
     changed_columns = [
