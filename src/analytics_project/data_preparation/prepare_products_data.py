@@ -260,9 +260,6 @@ def main() -> None:
     # Read raw data
     df = read_raw_data(input_file)
 
-    # Read raw data
-    df = read_raw_data(input_file)
-
     # Record original shape
     original_shape = df.shape
 
@@ -302,8 +299,8 @@ def main() -> None:
     save_prepared_data(df, output_file)
 
     logger.info("==================================")
-    logger.info(f"Original shape: {df.shape}")
-    logger.info(f"Cleaned shape:  {original_shape}")
+    logger.info(f"Original shape:  {original_shape}")
+    logger.info(f"Cleaned shape: {df.shape}")
     logger.info("==================================")
     logger.info("FINISHED prepare_products_data.py")
     logger.info("==================================")
