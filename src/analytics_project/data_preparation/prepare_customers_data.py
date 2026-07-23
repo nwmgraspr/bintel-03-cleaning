@@ -32,7 +32,6 @@ sys.path.append(str(pathlib.Path(__file__).resolve().parent.parent.parent))
 # Import local modules (e.g. utils/logger.py)
 from utils.logger import logger
 
-
 # Constants
 SCRIPTS_DATA_PREP_DIR: pathlib.Path = pathlib.Path(__file__).resolve().parent
 PROJECT_ROOT: pathlib.Path = pathlib.Path(__file__).resolve().parents[3]
@@ -74,9 +73,7 @@ def read_raw_data(file_name: str) -> pd.DataFrame:
 
     df = pd.read_csv(file_path)
 
-    logger.info(
-        f"Loaded dataframe with {len(df)} rows and {len(df.columns)} columns"
-    )
+    logger.info(f"Loaded dataframe with {len(df)} rows and {len(df.columns)} columns")
 
     return df
 
@@ -112,9 +109,7 @@ def remove_duplicates(df: pd.DataFrame) -> pd.DataFrame:
         pd.DataFrame: DataFrame with duplicates removed.
     """
 
-    logger.info(
-        f"FUNCTION START: remove_duplicates with dataframe shape={df.shape}"
-    )
+    logger.info(f"FUNCTION START: remove_duplicates with dataframe shape={df.shape}")
 
     initial_count = len(df)
 
@@ -149,9 +144,7 @@ def handle_missing_values(df: pd.DataFrame) -> pd.DataFrame:
 
     missing_before = df.isna().sum()
 
-    logger.info(
-        f"Missing values by column before handling:\n{missing_before}"
-    )
+    logger.info(f"Missing values by column before handling:\n{missing_before}")
 
     # TODO: Add customer-specific missing value handling rules
     #
@@ -161,13 +154,9 @@ def handle_missing_values(df: pd.DataFrame) -> pd.DataFrame:
 
     missing_after = df.isna().sum()
 
-    logger.info(
-        f"Missing values by column after handling:\n{missing_after}"
-    )
+    logger.info(f"Missing values by column after handling:\n{missing_after}")
 
-    logger.info(
-        f"{len(df)} records remaining after handling missing values."
-    )
+    logger.info(f"{len(df)} records remaining after handling missing values.")
 
     return df
 
@@ -183,9 +172,7 @@ def remove_outliers(df: pd.DataFrame) -> pd.DataFrame:
         pd.DataFrame: DataFrame with outliers removed.
     """
 
-    logger.info(
-        f"FUNCTION START: remove_outliers with dataframe shape={df.shape}"
-    )
+    logger.info(f"FUNCTION START: remove_outliers with dataframe shape={df.shape}")
 
     initial_count = len(df)
 
@@ -214,9 +201,7 @@ def validate_data(df: pd.DataFrame) -> pd.DataFrame:
         pd.DataFrame: Validated DataFrame.
     """
 
-    logger.info(
-        f"FUNCTION START: validate_data with dataframe shape={df.shape}"
-    )
+    logger.info(f"FUNCTION START: validate_data with dataframe shape={df.shape}")
 
     # TODO: Add validation rules specific to customer data
     #
@@ -242,9 +227,7 @@ def standardize_formats(df: pd.DataFrame) -> pd.DataFrame:
         pd.DataFrame: DataFrame with standardized formats.
     """
 
-    logger.info(
-        f"FUNCTION START: standardize_formats with dataframe shape={df.shape}"
-    )
+    logger.info(f"FUNCTION START: standardize_formats with dataframe shape={df.shape}")
 
     # TODO: Add customer formatting rules
     #
@@ -280,74 +263,47 @@ def main() -> None:
     input_file = "customers_data.csv"
     output_file = "customers_prepared.csv"
 
-
     # Read raw data
     df = read_raw_data(input_file)
-
 
     # Record original shape
     original_shape = df.shape
 
-
     # Log initial dataframe information
-    logger.info(
-        f"Initial dataframe columns: {', '.join(df.columns.tolist())}"
-    )
+    logger.info(f"Initial dataframe columns: {', '.join(df.columns.tolist())}")
     logger.info(f"Initial dataframe shape: {df.shape}")
-
 
     # Clean column names
     original_columns = df.columns.tolist()
 
-    df.columns = (
-        df.columns
-        .astype(str)
-        .str.strip()
-        .str.lower()
-        .str.replace(" ", "_")
-    )
-
+    df.columns = df.columns.astype(str).str.strip().str.lower().str.replace(" ", "_")
 
     changed_columns = [
         f"{old} -> {new}"
-        for old, new in zip(
-            original_columns,
-            df.columns,
-            strict=True
-        )
+        for old, new in zip(original_columns, df.columns, strict=True)
         if old != new
     ]
 
-
     if changed_columns:
-        logger.info(
-            f"Cleaned column names: {', '.join(changed_columns)}"
-        )
-
+        logger.info(f"Cleaned column names: {', '.join(changed_columns)}")
 
     # Remove duplicates
     df = remove_duplicates(df)
 
-
     # Handle missing values
     df = handle_missing_values(df)
-
 
     # Remove outliers
     df = remove_outliers(df)
 
-
     # Validate data
     df = validate_data(df)
-
 
     # Standardize formats
     df = standardize_formats(df)
 
-
     # Save prepared data
     save_prepared_data(df, output_file)
-
 
     logger.info("==================================")
     logger.info(f"Original shape: {original_shape}")
